@@ -13,7 +13,7 @@ import AppHeader from "../appHeader/AppHeader.vue";
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
+import "./_AppLayout.scss";
 export default defineComponent({
   name: 'AppLayout',
 });

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { h, ref, watch } from "vue";
 import type { MenuProps } from "ant-design-vue";
-import { SettingOutlined} from '@ant-design/icons-vue';
+import { SettingOutlined } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -29,24 +29,6 @@ const items: MenuProps["items"] = [
     ),
     title: "Activities",
   },
-  {
-    key: "/settings",
-    label: h(
-      "a",
-      {
-        href: "/settings",
-        onClick: (e: MouseEvent) => handleItemClick(e, "/settings"),
-      },
-      [
-        "Settings",
-        h(SettingOutlined, {
-          style: { marginLeft: "8px" },
-        }),
-      ]
-    ),
-    title: "Settings",
-  },
-
 ];
 
 const handleItemClick = (e: MouseEvent, path: string) => {
@@ -62,11 +44,47 @@ watch(
 </script>
 
 <template>
-  <a-menu mode="horizontal" :selectedKeys="current" :items="items">
-    <!-- <template #default="{ item }">
-      <span v-if="item.key !== '/settings'">{{ item.label }}www</span>
-      <span v-else style="margin-left: auto">{{ item.label }}111122</span>
-    </template> -->
-  </a-menu>
+  <div class="menu-wrapper">
+    <a-menu
+      v-model:selectedKeys="current"
+      mode="horizontal"
+      :items="items"
+      class="menu"
+    >
+      <template #default="{ item }">
+        <span>{{ item.label }}</span>
+      </template>
+    </a-menu>
+    <a
+      href="/settings"
+      @click.prevent="handleItemClick($event, '/settings')"
+      class="settings-link"
+    >
+      <SettingOutlined class="settings-icon" />
+    </a>
+  </div>
 </template>
+<style scoped>
+.menu-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
+.menu {
+  flex: 1;
+}
+
+.settings-link {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0 16px;
+}
+
+.settings-icon {
+  font-size: 24px;
+  margin-left: 8px;
+  color: black;
+}
+</style>

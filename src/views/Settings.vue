@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Menu } from "ant-design-vue";
 import { ref } from "vue";
 import {
@@ -78,7 +78,7 @@ const handleOpenChange = (keys) => {
 .menu-container {
   display: inline-flex;
   flex-direction: column;
-  width: 30%;
+  width: 25%;
   height: 100vh;
 }
 
